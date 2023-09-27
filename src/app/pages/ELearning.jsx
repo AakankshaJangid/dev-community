@@ -1,9 +1,8 @@
-'use client'
 import React from 'react'
 import Layout from '../Layout/page'
-import VideoTutorials from './VideoTutorialsSubPage'
+import VideoTutorials from '../video-tutorials/VideoTutorialsSubPage'
 
-const page = () => {
+const ELearning = () => {
   return (
     <div>
       <Layout>
@@ -13,4 +12,4 @@ const page = () => {
   )
 }
 
-export default page
+export default ELearning

@@ -1,13 +1,13 @@
 'use client'
 import React from 'react'
 import Layout from '../Layout/page'
-import VideoTutorials from './VideoTutorialsSubPage'
+import FAQs from './FAQs'
 
 const page = () => {
   return (
     <div>
       <Layout>
-        <VideoTutorials />
+        <FAQs />
       </Layout>
     </div>
   )

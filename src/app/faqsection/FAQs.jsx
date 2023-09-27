@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import cx from "classnames";
-const FQASection = () => {
+const FAQs = () => {
   const faqData = [
     {
       question: "How do I create a profile on the platform?",
@@ -128,4 +128,4 @@ const FQASection = () => {
   );
 };
 
-export default FQASection;
+export default FAQs;
