@@ -2,9 +2,9 @@
 import React from 'react';
 import Progressbar from './Progressbar';
 import ToDo from './ToDo';
-import Notes from './Notes';
-import Image from 'next/image';
 
+import Image from 'next/image';
+import Link from 'next/link';
 const Dashboard = () => {
   return (
     // main div
@@ -42,8 +42,20 @@ const Dashboard = () => {
     <div className='flex'>
      
      <ToDo/>
-     <Notes/>
-     
+     {/* <Notes/> */}
+     <div className='relative left-72 ml-12 bottom-10'>
+      <h1 className='text-white font-bold text-2xl ml-28'>Notes</h1>
+     <Link href="/dashboard/notes.jsx">
+       <Image
+        src='/notes.jpg'
+        alt='notes'
+        width={300}
+        height={500}
+        className='rounded-3xl'
+       />    
+      </Link>
+     </div>
+   
      
      </div>
    

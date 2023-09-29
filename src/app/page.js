@@ -1,12 +1,13 @@
 'use client';
 
 
-import DashBoard from "./DashBoard/Dashboard";
+import Blogs from "./Blogs/TechNews";
+import Dashboard from "./dashboard/Dashboard";
 
 
 
 
-// import DashBoard from './DashBoard/Dashboard';
+
 // import Demo from './DashBoard/Demo';
 
 // import FQASection from './FQASection/page'
@@ -19,7 +20,8 @@ export default function Home() {
        */}
        {/* <VideoTutorials /> */}
      
-       <DashBoard/>
+     <Dashboard/>
+       {/* <Blogs/> */}
     </main>
   )
 }
