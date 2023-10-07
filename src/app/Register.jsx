@@ -14,10 +14,11 @@ const Register = () => {
   // Function to fetch all users
   const fetchUsers = async () => {
     try {
-      const response = await fetch('/api/users/get-all-users');
+      const response = await fetch('http://localhost:5000/api/users/get-all-users');
       if (response.ok) {
         const data = await response.json();
         setUsers(data);
+        console.log(data);
       } else {
         console.error('Failed to fetch users');
       }
@@ -38,7 +39,7 @@ const Register = () => {
     e.preventDefault();
 
     try {
-        const response = await fetch('/api/users/register', {
+        const response = await fetch('http://localhost:5000/api/users/register', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
