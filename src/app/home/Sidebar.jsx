@@ -46,7 +46,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="">
-              <Link href="/blogs">
+              <Link href="/blog">
                 <span className="hover:text-blue-500 cursor-pointer">
                   Blogs
                 </span>
@@ -86,7 +86,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="">
-              <Link href="/blogs">
+              <Link href="/blog">
                 <Image
                   src="/pages-line.png"
                   width={30}

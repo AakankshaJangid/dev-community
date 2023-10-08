@@ -1,6 +1,6 @@
 'use client'
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TutorialPopup from "./TutorialPopup";
 
 const VideoTutorialsSubPage = () => {
@@ -71,6 +71,27 @@ const VideoTutorialsSubPage = () => {
     // Add more video tutorials as needed
   ];
   
+  const [videoTutorials, setVideoTutorials] = useState([]);
+
+  const fetchTutorials = async () => {
+    try {
+      const response = await fetch('http://localhost:5000/api/tutorials/all');
+      if (response.ok) {
+        const data = await response.json();
+        setVideoTutorials(data);
+        console.log(data);
+      } else {
+        console.error('Failed to fetch tutorials');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+
+  useEffect(() => {
+    fetchTutorials(); // Fetch users when the component mounts
+  }, []);
 
   const openPopup = (videoUrl) => {
     setCurrentVideoUrl(videoUrl);
@@ -108,7 +129,7 @@ const VideoTutorialsSubPage = () => {
           </div>
         </div>
         <div className="grid grid-cols-4 gap-4">
-        {videoTutorialsSubPage.map((item, index) => (
+        {videoTutorials.map((item, index) => (
           <div key={`video-${index}`}>
             <div onClick={() => openPopup(item.url)} className="flex flex-col gap-2">
               <Image

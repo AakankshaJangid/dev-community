@@ -18,7 +18,7 @@ const Navbar =({ user }) => {
                 alt={user.name}
                 className="w-8 h-8 rounded-full"
               />
-              <span className="text-white">{user.name}</span>
+              <Link href={'/user-profile'}><span className="text-white">{user.name}</span></Link>
             </div>
           ) : (
             <div className="flex space-x-4">

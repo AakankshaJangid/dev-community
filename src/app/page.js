@@ -1,7 +1,9 @@
 'use client';
 import Register from './Register';
+import Blogs from './blog/page';
 import FQASection from './faqsection/FAQs'
 import HomePage from './home/page';
+import Roadmap from './roadmap/page';
 import VideoTutorials from './video-tutorials/VideoTutorialsSubPage';
 export default function Home() {
   return (
@@ -9,7 +11,9 @@ export default function Home() {
       {/* <FQASection /> */}
       {/* <VideoTutorials /> */}
       {/* <HomePage /> */}
-      <Register />
+      {/* <Register /> */}
+      {/* <Blogs /> */}
+      <Roadmap />
     </main>
   )
 }

@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
   return (
     <div className="flex w-full">
       <Sidebar />
-      <div className="flex-1 overflow-y-scroll h-[100vh]">
+      <div className="flex flex-col w-full justify-between overflow-y-scroll h-[100vh]">
         <Navbar user={user} />
         <main className="p-4">{children}</main>
         <Footer />
