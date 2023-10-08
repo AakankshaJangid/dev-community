@@ -1,4 +1,4 @@
-// components/TutorialPopup.js
+
 import React from 'react';
 import Image from "next/image";
 
@@ -7,7 +7,7 @@ const RoadmapPopup = ({ isOpen, onClose, url }) => {
     return null;
   }
   const iframeStyles = {
-     overflow: 'hidden', // Hide the overflowing content (optional)
+   
    };
 
   return (
@@ -23,15 +23,13 @@ const RoadmapPopup = ({ isOpen, onClose, url }) => {
           />
         </button>
         <iframe
-          src={url} // Replace 'Url' with the URL of the website you want to embed
-          width="100%" // Set the width to control the size of the embedded content
-          height="500vh" // Set the height to control the height of the embedded content
-          // frameBorder="3" // Remove the border around the iframe (optional)
-          allowFullScreen // Allow the iframe to go fullscreen (optional)
-          title="Embedded Website" // Provide a title for accessibility (optional)
+          src={url} 
+          width="100%" 
+          height="500vh" 
+          allowFullScreen 
+          title="Embedded Website" 
           className=" ml-auto mr-auto  "
           style={iframeStyles}
-          sandbox="allow-same-origin "
 
         ></iframe>
       </div>

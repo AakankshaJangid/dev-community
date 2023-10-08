@@ -1,11 +1,12 @@
 import Image from "next/image";
 import React, { useState } from "react";
 import RoadmapPopup from "./RoadmapPopup";
-
+import RoadmapPopupContent from "./RoadmapPopupContent"; // Import your popup content component
 
 const Roadmap = () => {
   const [popupOpen, setPopupOpen] = useState(false);
-  const [CurrentUrl, setCurrentUrl] = useState('');
+  const [selectedContentUrl, setSelectedContentUrl] = useState('');
+  
   const videoTutorials = [
     {
       title: "FrontEnd Development",
@@ -31,16 +32,15 @@ const Roadmap = () => {
       coverImg: "/dev-comm-logo.png",
       url: "https://roadmap.sh/blockchain",
     }
-
   ];
 
   const openPopup = (Url) => {
-    setCurrentUrl(Url);
+    setSelectedContentUrl(Url);
     setPopupOpen(true);
   };
 
   const closePopup = () => {
-    setCurrentUrl('');
+    setSelectedContentUrl('');
     setPopupOpen(false);
   };
 
@@ -49,109 +49,90 @@ const Roadmap = () => {
       label: "Frontend",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/frontend",
+      url: "https://roadmap.sh/frontend", // Add the URL for Frontend
     },
     {
       label: "Backend",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-500",
-      url: "https://roadmap.sh/backend",
+      url: "https://roadmap.sh/backend", // Add the URL for Backend
     },
     {
       label: "Full Stack",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-600",
-      url: "https://roadmap.sh/full-stack",
+      url: "https://roadmap.sh/full-stack", // Add the URL for Full Stack
     },
     {
-      label: "UX design",
+      label: "UX Design",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/ux-design",
+      url: "https://roadmap.sh/ux-design", // Add the URL for UX Design
     },
     {
       label: "C++",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-500",
-      url: "https://roadmap.sh/cplusplus",
+      url: "https://roadmap.sh/cplusplus", // Add the URL for C++
     },
-    {
-      label: "PostgreSQL",
-      imageUrl: "/arrow-right-up-fill.png",
-      hoverColor: "blue-600",
-      url: "https://roadmap.sh/postgresql-dba",
-    },
-    {
-      label: "AI/ML",
-      imageUrl: "/arrow-right-up-fill.png",
-      hoverColor: "blue-400",
-      url: "https://roadmap.sh/ai-data-scientist",
-    },
-
-
-
+    // Add other role-based items with their respective URLs
   ];
-
-
 
   const skillBased = [
     {
       label: "Java",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/java",
+      url: "https://roadmap.sh/java", // Add the URL for Java
     },
     {
       label: "Python",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-500",
-      url: "https://roadmap.sh/python",
+      url: "https://roadmap.sh/python", // Add the URL for Python
     },
     {
       label: "React",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-600",
-      url: "https://roadmap.sh/react",
+      url: "https://roadmap.sh/react", // Add the URL for React
     },
     {
       label: "SQL",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/sql",
+      url: "https://roadmap.sh/sql", // Add the URL for SQL
     },
     {
       label: "System Design",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-500",
-      url: "https://roadmap.sh/system-design",
+      url: "https://roadmap.sh/system-design", // Add the URL for System Design
     },
     {
       label: "MongoDB",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-600",
-      url: "https://roadmap.sh/mongodb",
+      url: "https://roadmap.sh/mongodb", // Add the URL for MongoDB
     },
     {
       label: "Node.js",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/nodejs",
+      url: "https://roadmap.sh/nodejs", // Add the URL for Node.js
     },
     {
       label: "AWS",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-500",
-      url: "https://roadmap.sh/best-practices/aws",
+      url: "https://roadmap.sh/aws", // Add the URL for AWS
     },
+    // Add other skill-based items with their respective URLs
   ];
 
-
-
   return (
-    <div className="w-full ">
-
+    <div className="w-full">
       <div className="w-1/2 ml-auto mr-auto">
-
         <div className="flex flex-col gap-3  ">
           <h1 className="text-6xl font-semibold">
             <span className="text-transparent  bg-clip-text bg-gradient-to-b from-orange-300 to-orange-700">DevCom-Roadmaps</span>
@@ -161,7 +142,6 @@ const Roadmap = () => {
           <p className="text-2xl font-bold text-teal-500 pt-5 pr-2">
             powered by
           </p>
-
           <Image
             src="/dev-comm-logo.png"
             width={80}
@@ -169,23 +149,17 @@ const Roadmap = () => {
             alt="logo-img"
             className="rounded-full"
           />
-
         </div>
-
         <div className="mr-auto ml-auto w-1/5 ">
-
-          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-6 z-2 bg-slate-800 relative ">Hot Topics!!</p>
+          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-6 z-2 bg-slate-800 relative">Hot Topics!!</p>
         </div>
-
-
       </div>
       <div className=" "  >
-        <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absoulte"></hr>
+        <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absolute"></hr>
       </div>
       <div className=" gap-4 mt-9 flex justify-center  ">
         {videoTutorials.map((item, index) => (
           <div key={`video-${index}`} className="ml-auto mr-auto mt-5 border-2 border-gray-900 rounded-lg shadow-xl shadow-black w-64 h-79   transition-transform transform hover:scale-105">
-
             <div onClick={() => openPopup(item.url)} className="flex flex-col gap-2  my-6 ml-auto mr-auto ">
               <Image
                 src={item.coverImg}
@@ -201,30 +175,26 @@ const Roadmap = () => {
             </div>
           </div>
         ))}
-        <div className="mt-40 mr-6"><button className=" underline rounded-lg px-1 bg-transparent hover:bg-cyan-950">more roadmaps..</button></div>
+        <div className="mt-40 mr-6"><button className="underline rounded-lg px-1 bg-transparent hover:bg-cyan-950">more roadmaps..</button></div>
       </div>
-      <RoadmapPopup isOpen={popupOpen} onClose={closePopup} url={CurrentUrl} />
-
+      <RoadmapPopup isOpen={popupOpen} onClose={closePopup} url={selectedContentUrl}>
+        {/* You can render your popup content here */}
+        <RoadmapPopupContent url={selectedContentUrl} />
+      </RoadmapPopup>
       <div>
         <div className="mr-auto ml-auto w-48 ">
-
-          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-16 z-2 bg-slate-800 relative ">Role Based Roadmaps</p>
+          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-16 z-2 bg-slate-800 relative">Role Based Roadmaps</p>
         </div>
-
-
-
         <div className=" "  >
-          <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absoulte"></hr>
+          <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absolute"></hr>
         </div>
-
         <div className="w-full">
-
           <div className="mt-10 grid grid-cols-3 gap-1 w-4/6 mx-auto justify-center ">
             {roleBased.map((roadmap, index) => (
               <div
                 key={index}
                 className={`bg-slate-900 border border-gray-400 shadow-md shadow-violet-950 hover:border-${roadmap.hoverColor} hover:border-r-2 hover:border-b-2 m-1 font-serif text-lg font-thin text-orange-200 px-2 py-4 rounded-lg flex justify-between transition-transform transform hover:scale-105`}
-                onClick={() => openPopup(roadmap.url)}
+                onClick={() => openPopup(roadmap.url)} // Open popup with URL
               >
                 {roadmap.label}
                 <Image
@@ -238,25 +208,52 @@ const Roadmap = () => {
             ))}
           </div>
         </div>
-        {/* here pr code */}
       </div>
       <div>
-        <div className="mr-auto ml-auto w-48 ">
 
-          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-16 z-2 bg-slate-800 relative ">Skill Based Roadmaps</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        <div className="mr-auto ml-auto w-48 ">
+          <p className=" mb-1 border-2  rounded-lg border-gray-500 text-center p-1 mt-16 z-2 bg-slate-800 relative">Skill Based Roadmaps</p>
         </div>
         <div className=" "  >
-          <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absoulte"></hr>
+          <hr width="100%" color="gray" size="2" className="border-gray-500 -mt-5 mr-7 z-1 absolute"></hr>
         </div>
-
         <div className="w-full">
-
           <div className="mt-10 grid grid-cols-3 gap-1 w-4/6 mx-auto justify-center ">
             {skillBased.map((roadmap, index) => (
               <div
                 key={index}
                 className={`bg-slate-900 border border-gray-400 shadow-md shadow-violet-950 hover:border-${roadmap.hoverColor} hover:border-r-2 hover:border-b-2 m-1 font-serif text-lg font-thin text-orange-200 px-2 py-4 rounded-lg flex justify-between transition-transform transform hover:scale-105`}
-                onClick={() => openPopup(roadmap.url)}
+                onClick={() => openPopup(roadmap.url)} // Open popup with URL
               >
                 {roadmap.label}
                 <Image
@@ -272,8 +269,7 @@ const Roadmap = () => {
         </div>
       </div>
     </div>
-
-  )
+  );
 }
 
-export default Roadmap
+export default Roadmap;
