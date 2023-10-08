@@ -1,14 +1,18 @@
 'use client';
 
+// import Activity from "./Blogs/activity";
+// import Create from "./Blogs/create";
+import Blogs from "./Blogs/page";
+// import Profile from "./Blogs/profile";
+// import Search from "./Blogs/search";
 
-import Blogs from "./Blogs/TechNews";
-import Dashboard from "./dashboard/Dashboard";
 
 
 
 
 
-// import Demo from './DashBoard/Demo';
+// import Dashboard from "./dashboard/Dashboard";
+
 
 // import FQASection from './FQASection/page'
 // import VideoTutorials from './video-tutorials/page';
@@ -20,8 +24,13 @@ export default function Home() {
        */}
        {/* <VideoTutorials /> */}
      
-     <Dashboard/>
-       {/* <Blogs/> */}
+     {/* <Dashboard/> */}
+     <Blogs/>
+     {/* <Search/> */}
+     {/* <Activity/> */}
+     {/* <Create/> */}
+     {/* <Communities/> */}
+     {/* <Profile/> */}
     </main>
   )
 }
