@@ -10,7 +10,6 @@ const Register = () => {
   });
 
   const [users, setUsers] = useState([]);
-
   // Function to fetch all users
   const fetchUsers = async () => {
     try {
@@ -51,6 +50,7 @@ const Register = () => {
           // Registration successful
           alert('User registered successfully');
           // Redirect or perform any other actions
+          window.location.href = '/home';
         } else {
           alert('Registration failed');
         }
