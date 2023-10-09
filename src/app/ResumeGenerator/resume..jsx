@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import Image from 'next/image';
 
 const Resume = () => {
-  const [text, setText] = useState('');
-  const [showCursor, setShowCursor] = useState(true);
-  const quoteLine1 = "YoUr sKillS & EXpeRieNceS aRe UniQUe,";
-  const quoteLine2 = "let yOUr RESUME reFLect that";
-  const speed = 120;
-
-  useEffect(() => {
-    let currentText = '';
-    let i = 0;
-
-    const typeText = () => {
-      if (i < quoteLine1.length + quoteLine2.length) {
-        if (i < quoteLine1.length) {
-          currentText += quoteLine1.charAt(i);
-        } else {
-          currentText += quoteLine2.charAt(i - quoteLine1.length);
-        }
-
-        setText(currentText);
-        i++;
-        setTimeout(typeText, speed);
-      } else {
-        setShowCursor(!showCursor);
-      }
-    };
-
-    typeText();
-  }, [showCursor]);
-
   return (
-    <div className="text-xl font-semibold text-center">
-      <p>{text}{showCursor && <span className="animate-blink">|</span>}</p>
+    <div className="flex flex-row items-center justify-around w-full  border-pink-400 m-4 p-2">
+      <div className="text-2xl font-semibold text-center flex-col justify-center pt-28 px-4 font-serif animate-fade  w-76">
+        <p className="quote-line text-violet-300">
+          "Your skills and experiences are unique
+        </p>
+        <p className="quote-line text-violet-300">
+          let your{' '}
+          <span className=" font-mono text-transparent bg-clip-text bg-gradient-to-b from-blue-100 to-pink-500 text-4xl animate-pulse">
+            Resume
+          </span>{' '}
+          reflect that"
+        </p>
+        <button className='mt-4 py-1 px-2 text-violet-200 border border-violet-200  bg-slate-700 rounded-md font-thin font-mono'>Start building</button>
+      </div>
+      <div className="flex items-center justify-center">
+        <Image
+          src="/undraw_online_resume_re_ru7s.svg"
+          width={500}
+          height={500}
+          alt="logo-img"
+          className="rounded-lg p-4 align-middle"
+        />
+      </div>
     </div>
   );
 };
 
 export default Resume;
+

@@ -87,13 +87,7 @@ const Roadmap = () => {
       hoverColor: "blue-400",
       url: "https://roadmap.sh/ai-data-scientist",
     },
-
-
-
   ];
-
-
-
   const skillBased = [
     {
       label: "Java",
