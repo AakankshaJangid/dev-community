@@ -1,4 +1,5 @@
 // components/Sidebar.js
+"use client"
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -58,7 +59,7 @@ const Sidebar = () => {
               </Link>
             </li>
             <li className="">
-              <Link href="/roadmaps">
+              <Link href="/roadmap">
                 <span className="hover:text-blue-500 cursor-pointer">
                   Roadmaps
                 </span>

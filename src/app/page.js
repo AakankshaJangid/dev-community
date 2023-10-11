@@ -1,4 +1,5 @@
 'use client';
+import Login from './Login';
 import Register from './Register';
 import Blogs from './blog/page';
 import FQASection from './faqsection/FAQs'
@@ -11,9 +12,10 @@ export default function Home() {
       {/* <FQASection /> */}
       {/* <VideoTutorials /> */}
       {/* <HomePage /> */}
-      <Register />
+      {/* <Register /> */}
       {/* <Blogs /> */}
       {/* <Roadmap /> */}
+      <Login />
     </main>
   )
 }

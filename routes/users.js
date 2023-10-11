@@ -35,4 +35,27 @@ router.get('/get-all-users', async (req, res) => {
   });
   
 
+// Login user
+router.post('/login', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(401).json({ message: 'User not found' });
+    }
+
+    // You should have password hashing and validation logic here, e.g., using bcrypt
+    if (password !== user.password) {
+      return res.status(401).json({ message: 'Incorrect password' });
+    }
+
+    res.status(200).json({ message: 'Login successful', user });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
 module.exports = router;
