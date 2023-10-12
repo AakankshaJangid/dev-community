@@ -7,8 +7,8 @@ const Blog = require('../models/Blog');
 // POST /api/blogs - Create a new blog post
 router.post('/create', async (req, res) => {
   try {
-    const { images, description, createdBy, createdTime } = req.body;
-    const blog = new Blog({ images, description, createdBy, createdTime });
+    const { images,title, description, createdBy, createdTime } = req.body;
+    const blog = new Blog({ images,title, description, createdBy, createdTime });
     await blog.save();
     res.status(201).json({ message: 'Blog post created successfully' });
   } catch (error) {

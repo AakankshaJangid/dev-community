@@ -1,33 +1,3 @@
-// "use client";
-// import React from "react";
-// import Sidebar from "./sidebar";
-// import Home from "./home/page";
-// import Layout from "../Layout/page";
-// import Search from "./search/page";
-// import Profile from "./profile/page";
-// import Communities from "./communities/page";
-
-// const Blogs = () => {
-//   return (
-//     <div className="w-full">
-//       <Layout>
-//       <Sidebar />
-//         <div className="flex">
-//           <div className="flex flex-col">
-//             <Search />
-//             <Home />
-//           </div>
-//           {/* <div className="flex flex-col">
-//             <Profile />
-//             <Communities />
-//           </div> */}
-//         </div>
-//       </Layout>
-//     </div>
-//   );
-// };
-
-// export default Blogs;
 // pages/index.js
 "use client";
 import React, { useEffect, useState } from "react";
@@ -59,17 +29,18 @@ const Blog = () => {
   }, []);
   
   return (
-    <div className="w-full">
+    <div className="w-full bg-[#393E46]">
       <Layout>
         <div className="w-full flex justify-between mb-6">
         <h1 className="text-3xl font-bold mb-4">Blog Page</h1>
-        <Link href={'/blog/createpost'} className="bg-gradient-to-r from-cyan-600 to-teal-500 py-2 px-4 rounded-lg">create post</Link>
+        <Link href={'/blog/createpost'} className="text-white bg-[#F96D00] bg-opacity-80 p-2 my-2 rounded-sm text-sm">create post</Link>
         </div>
         <div className="grid grid-cols-2 gap-6">
           {blogData.map((post) => (
             <BlogPost
               key={post.id}
               images={post.images}
+              title={post.title}
               description={post.description}
               createdBy={post.createdBy}
               createdTime={post.createdTime}

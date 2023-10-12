@@ -105,24 +105,24 @@ const VideoTutorialsSubPage = () => {
   return (
     <div className="w-full">
       <div className="flex flex-col gap-10">
-        <div className="flex justify-center gap-6 items-center bg-gradient-to-r from-cyan-600 to-teal-600 p-4 rounded-xl">
+        <div className="flex justify-center gap-6 items-center bg-[#F96D00]  bg-opacity-40 p-4 rounded-xl">
           <Image
             src="/dev-comm-logo.png"
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             alt="logo-img"
             className="rounded-full"
           />
           <div className="flex flex-col gap-3">
-            <h1 className="text-6xl font-semibold">E-learning modules</h1>
-            <p className="text-xl text-gray-300">
+            <h1 className="text-4xl font-semibold">E-learning modules</h1>
+            <p className="text-base text-gray-300">
               Graphical video demonstrations on software engineering topics.
             </p>
             <div className="flex gap-6">
-              <h1 className="p-2 bg-orange-600 rounded-lg cursor-pointer hover:bg-orange-700">
+              <h1 className="p-2 bg-white text-[#F96D00] rounded-lg cursor-pointer">
                 @dev_community
               </h1>
-              <h1 className="p-2 bg-blue-900 rounded-lg cursor-pointer hover:bg-blue-950">
+              <h1 className="p-2 bg-[#222831] rounded-lg cursor-pointer ">
                 devcommunity@gmail.com
               </h1>
             </div>

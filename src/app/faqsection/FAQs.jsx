@@ -67,30 +67,30 @@ const FAQs = () => {
   };
 
   return (
-    <div className="">
+    <div className="bg-[#393E46]">
       <div className="flex flex-col gap-10">
-        <div className="flex justify-center gap-6 items-center bg-gradient-to-r from-cyan-600 to-teal-600 p-4 rounded-xl">
+        <div className="flex justify-center gap-6 items-center bg-[#F96D00]  bg-opacity-40 p-4 rounded-xl">
           <Image
             src="/dev-comm-logo.png"
-            width={300}
-            height={300}
+            width={200}
+            height={200}
             alt="logo-img"
             className="rounded-full"
           />
-          <div className="flex flex-col gap-3">
-            <h1 className="text-6xl font-semibold">
-              Hello, <span className="text-blue-950">Tech Crafters</span>
+          <div className="flex flex-col gap-2">
+            <h1 className="text-4xl text-[#F2F2F2] font-semibold">
+              Hello, <span className="text-[#222831]">Tech Crafters</span>
             </h1>
-            <p className="text-xl text-gray-300">
+            <p className="text-base text-[#F2F2F2] opacity-90">
               Establishing a comprehensive hub that equips developers with
               tools, resources, and collaboration opportunities to enhance their
               skills and solve problems.
             </p>
             <div className="flex gap-6">
-              <h1 className="p-2 bg-orange-600 rounded-lg cursor-pointer hover:bg-orange-700">
+              <h1 className="p-2 bg-white text-[#F96D00] rounded-lg cursor-pointer">
                 @dev_community
               </h1>
-              <h1 className="p-2 bg-blue-900 rounded-lg cursor-pointer hover:bg-blue-950">
+              <h1 className="p-2 bg-[#222831] rounded-lg cursor-pointer ">
                 devcommunity@gmail.com
               </h1>
             </div>
@@ -100,7 +100,7 @@ const FAQs = () => {
           {faqData.map((item, index) => (
             <div
               key={index}
-              className="shadow-sm shadow-gray-700 p-4 flex flex-col gap-3"
+              className="border-gray-600 border-b-2 p-4 flex flex-col gap-3"
             >
               <h1
                 className="question text-xl text-gray-300 cursor-pointer flex justify-between"

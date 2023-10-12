@@ -1,6 +1,6 @@
 'use client';
-import Login from './Login';
-import Register from './Register';
+import Login from './login/page';
+import Register from './register/page';
 import Blogs from './blog/page';
 import FQASection from './faqsection/FAQs'
 import HomePage from './home/page';
@@ -8,14 +8,14 @@ import Roadmap from './roadmap/page';
 import VideoTutorials from './video-tutorials/VideoTutorialsSubPage';
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between bg-slate-800 w-full">
+    <main className="min-h-screen bg-[#393E46] w-full flex justify-center items-center">
       {/* <FQASection /> */}
       {/* <VideoTutorials /> */}
       {/* <HomePage /> */}
-      {/* <Register /> */}
+      <Register />
       {/* <Blogs /> */}
       {/* <Roadmap /> */}
-      <Login />
+      {/* <Login /> */}
     </main>
   )
 }

@@ -1,9 +1,8 @@
-// components/CreateBlogPostForm.js
-
 import React, { useState } from 'react';
 
 const CreateBlogPostForm = ({ onSubmit }) => {
   const [images, setImages] = useState([]);
+  const [title, setTitle] = useState(''); // Added title state
   const [description, setDescription] = useState('');
   const [createdBy, setCreatedBy] = useState('');
   const [createdTime, setCreatedTime] = useState('');
@@ -13,6 +12,7 @@ const CreateBlogPostForm = ({ onSubmit }) => {
     // Create a blog post object
     const newBlogPost = {
       images,
+      title, // Added title to the object
       description,
       createdBy,
       createdTime,
@@ -34,13 +34,22 @@ const CreateBlogPostForm = ({ onSubmit }) => {
         />
       </div>
       <div className="flex justify-between gap-10">
+        <label>Title:</label>
+        <input
+          type="text"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+          required
+          className="outline-none bg-transparent border-b-2 border-white w-1/2"
+        />
+      </div>
+      <div className="flex justify-between gap-10">
         <label>Description:</label>
         <textarea
           value={description}
           onChange={(e) => setDescription(e.target.value)}
           required
-          className="outline-none bg-transparent border-b-2 border-white  w-1/2"
-
+          className="outline-none bg-transparent border-b-2 border-white w-1/2"
         />
       </div>
       <div className="flex justify-between gap-10">
@@ -50,8 +59,7 @@ const CreateBlogPostForm = ({ onSubmit }) => {
           value={createdBy}
           onChange={(e) => setCreatedBy(e.target.value)}
           required
-          className="outline-none bg-transparent border-b-2 border-white  w-1/2"
-
+          className="outline-none bg-transparent border-b-2 border-white w-1/2"
         />
       </div>
       <div className="flex justify-between gap-10">
@@ -61,8 +69,7 @@ const CreateBlogPostForm = ({ onSubmit }) => {
           value={createdTime}
           onChange={(e) => setCreatedTime(e.target.value)}
           required
-          className="outline-none bg-transparent border-b-2 border-white  w-1/2"
-
+          className="outline-none bg-transparent border-b-2 border-white w-1/2"
         />
       </div>
       <button type="submit">Create Blog Post</button>

@@ -3,7 +3,7 @@ import Link from 'next/link';
 
 const Navbar =({ user }) => {
   return (
-    <nav className="bg-gradient-to-r from-cyan-600 to-teal-600 p-4">
+    <nav className="bg-[#F96D00] p-4">
       <div className="container mx-auto flex justify-between items-center">
         <div>
           <Link href="/">

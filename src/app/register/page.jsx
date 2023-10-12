@@ -1,5 +1,7 @@
 // Register.js (Frontend)
-
+"use client"
+import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useState } from "react";
 
 const Register = () => {
@@ -7,6 +9,7 @@ const Register = () => {
     username: "",
     email: "",
     password: "",
+    confirmPassword: "",
   });
 
   const [users, setUsers] = useState([]);
@@ -67,11 +70,26 @@ const Register = () => {
   }, []);
 
   return (
-    <div className="flex justify-center items-center py-20">
-      <div className="bg-gradient-to-r from-cyan-600 to-teal-600 p-4">
-        <div className="p-4 flex flex-col gap-3">
+    <div className="min-h-screen bg-[#393E46] w-full flex justify-center items-center">
+      <div className="bg-white bg-opacity-20 p-4 flex justify-center items-center gap-10 rounded-sm shadow-xl">
+        <div> 
+          <Image
+          src="/Innovation-pana.png"
+          width={400}
+          height={400}
+          alt="register-img"
+          className=""
+          />         
+        </div>
+        <div className="p-4 flex flex-col gap-6">
+          <div className="flex flex-col gap-1">
           <h2 className="text-2xl font-bold">Register</h2>
-          <form onSubmit={handleSubmit} className="text-gray-200 flex flex-col gap-6">
+          <p className="text-lg text-[#222831] ">Navigating Tech Together!</p>
+          </div>
+          <form
+            onSubmit={handleSubmit}
+            className="text-gray-200 flex flex-col gap-6"
+          >
             <div className="flex justify-between gap-10">
               <label htmlFor="username">Username</label>
               <input
@@ -108,18 +126,22 @@ const Register = () => {
                 className="outline-none bg-transparent border-b-2 border-white"
               />
             </div>
-            {/* <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            id="confirmPassword"
-            value={formData.confirmPassword}
-            onChange={handleChange}
-            required
-          />
-        </div> */}
-            <button type="submit" className="py-2 px-4 bg-white text-cyan-600">Register</button>
+            <div className="flex justify-between gap-10">
+              <label htmlFor="confirmPassword">Confirm Password</label>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+                required
+                className="outline-none bg-transparent border-b-2 border-white"
+              />
+            </div>
+            <button type="submit" className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-lg text-[#F96D00] rounded-sm">
+              Register
+            </button>
+            <p>Already have an account? <Link href={'/login'}> <span className="text-[#222831] font-semibold">Log In</span></Link></p>
           </form>
         </div>
       </div>

@@ -5,7 +5,7 @@ import VideoTutorials from './VideoTutorialsSubPage'
 
 const page = () => {
   return (
-    <div>
+    <div className='bg-[#393E46]'>
       <Layout>
         <VideoTutorials />
       </Layout>

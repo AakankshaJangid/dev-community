@@ -16,7 +16,7 @@ const RoadmapsPreview = () => {
       </div>
       <div>
         <Image
-          src="/header-img.png"
+          src="/Innovation-amico.png"
           width={1000}
           height={1200}
           alt="logo-img"

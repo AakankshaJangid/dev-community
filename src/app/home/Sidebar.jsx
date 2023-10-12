@@ -13,15 +13,15 @@ const Sidebar = () => {
 
   return (
     <div
-      className={`w-1/5 bg-gray-800 h-screen text-white ${
+      className={`w-1/5 bg-[#222831] h-screen text-white ${
         isSidebarOpen ? "" : "w-20"
       }`}
     >
-      <div className="p-4">
-        <div className="flex justify-between items-center my-4">
+      <div className="flex flex-col gap-4 p-4">
+        <div className="flex justify-between items-center">
           <button
             onClick={toggleSidebar}
-            className="text-2xl text-white focus:outline-none px-2 py-4"
+            className="text-2xl text-white focus:outline-none px-2"
           >
             {isSidebarOpen ? "✕" : "☰"}
           </button>
@@ -43,38 +43,38 @@ const Sidebar = () => {
           <ul className="flex flex-col gap-6">
             <li className="">
               <Link href="/">
-                <span className="hover:text-blue-500 cursor-pointer">Home</span>
+                <span className="hover:text-[#F96D00] cursor-pointer">Home</span>
               </Link>
             </li>
             <li className="">
               <Link href="/blog">
-                <span className="hover:text-blue-500 cursor-pointer">
+                <span className="hover:text-[#F96D00] cursor-pointer">
                   Blogs
                 </span>
               </Link>
             </li>
             <li className="">
               <Link href="/faqsection">
-                <span className="hover:text-blue-500 cursor-pointer">FAQs</span>
+                <span className="hover:text-[#F96D00] cursor-pointer">FAQs</span>
               </Link>
             </li>
             <li className="">
               <Link href="/roadmap">
-                <span className="hover:text-blue-500 cursor-pointer">
+                <span className="hover:text-[#F96D00] cursor-pointer">
                   Roadmaps
                 </span>
               </Link>
             </li>
             <li className="">
               <Link href="/video-tutorials">
-                <span className="hover:text-blue-500 cursor-pointer">
+                <span className="hover:text-[#F96D00] cursor-pointer">
                   E-learning
                 </span>
               </Link>
             </li>
           </ul>
         ) : (
-          <ul className="flex flex-col gap-4">
+          <ul className="flex flex-col gap-6 mt-2">
             <li className="">
               <Link href="/">
                 <Image

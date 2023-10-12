@@ -5,7 +5,7 @@ import FAQs from './FAQs'
 
 const page = () => {
   return (
-    <div>
+    <div className='bg-[#393E46]'>
       <Layout>
         <FAQs />
       </Layout>
