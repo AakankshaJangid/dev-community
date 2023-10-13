@@ -26,8 +26,10 @@ const CreateBlogPostPage = () => {
 
   return (
     <Layout>
-      <h1 className="text-3xl font-bold mb-4">Create Blog Post</h1>
+      <div className='flex flex-col gap-10'>
+      <h1 className=" text-3xl font-bold">Create Blog Post</h1>
       <CreateBlogPostForm onSubmit={createBlogPost} />
+      </div>
     </Layout>
   );
 };

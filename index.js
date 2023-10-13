@@ -7,7 +7,7 @@ const cors = require('cors');
 const usersRouter = require('./routes/users');
 const videoTutorialsRouter = require('./routes/videoTutorial');
 const blogsRouter = require('./routes/blogs');
-
+const notesRouter = require('./routes/notes');
 const app = express();
 const port = process.env.PORT || 5000;
 
@@ -32,6 +32,8 @@ app.use('/api/users', usersRouter);
 app.use('/api/tutorials', videoTutorialsRouter);
 
 app.use('/api/blogs', blogsRouter); 
+
+app.use('/api/notes', notesRouter);
 
 // Start the server
 app.listen(port, () => {

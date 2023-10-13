@@ -12,7 +12,7 @@ const RoadmapsPreview = () => {
           obcaecati? Doloremque excepturi aut, aliquid temporibus asperiores
           veniam repudiandae deserunt fugiat vero?
         </p>
-        <button className="bg-gray-600 text-white p-2 w-2/6">Go to roadmaps...</button>
+        <button className="bg-[#F96D00] rounded-md text-white p-2 w-2/6">Go to roadmaps...</button>
       </div>
       <div>
         <Image

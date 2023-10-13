@@ -15,7 +15,7 @@ const BlogsPreview = ({blogData}) => {
             <th className="px-4 py-2">Image</th>
             <th className="px-4 py-2">Blog Description</th>
             <th className="px-4 py-2">Created By</th>
-            <th className="px-4 py-2">Created Date</th>
+            <th className="px-4 py-2">Created Time</th>
           </tr>
         </thead>
         <tbody className=''>
@@ -32,7 +32,7 @@ const BlogsPreview = ({blogData}) => {
             </td>
             <td className="px-4 py-4">
               <div className="flex justify-center items-center">
-                {blog.description}
+                {blog.title}
               </div>
             </td>
             <td className="px-4 py-4">

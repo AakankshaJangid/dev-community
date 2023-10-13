@@ -22,7 +22,8 @@ const CreateBlogPostForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className='bg-gradient-to-r from-cyan-600 to-teal-500 px-6 py-4'>
+    <div className='bg-gradient-to-r from-[#F96D00] to-[#222831] p-[1px] rounded-md'>
+      <form onSubmit={handleSubmit} className='bg-[#222831] p-4 rounded-md'>
       <div className="flex justify-between gap-10">
         <label>Images (comma-separated URLs):</label>
         <input
@@ -72,8 +73,9 @@ const CreateBlogPostForm = ({ onSubmit }) => {
           className="outline-none bg-transparent border-b-2 border-white w-1/2"
         />
       </div>
-      <button type="submit">Create Blog Post</button>
+      <button type="submit" className='bg-[#F96D00] px-4 py-2 rounded-md text-sm'>Create Blog Post</button>
     </form>
+    </div>
   );
 };
 

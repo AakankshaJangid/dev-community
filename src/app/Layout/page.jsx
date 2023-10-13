@@ -8,7 +8,7 @@ const Layout = ({ children }) => {
     image: '/dev-comm-logo.png'
   };
   return (
-    <div className="flex w-full">
+    <div className="flex w-full bg-[#393E46]">
       <Sidebar />
       <div className="flex flex-col w-full justify-between overflow-y-scroll h-[100vh]">
         <Navbar user={user} />
