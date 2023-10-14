@@ -11,7 +11,7 @@ const Roadmap = () => {
       title: "FrontEnd Development",
       description: "HTMl, CSS , JavaScript...",
       coverImg: "/dev-comm-logo.png",
-      url: "https://roadmap.sh/frontend",
+      url: "public\frontend.pdf",
     },
     {
       title: "Full Stack",
@@ -43,13 +43,14 @@ const Roadmap = () => {
     setCurrentUrl('');
     setPopupOpen(false);
   };
+  
 
   const roleBased = [
     {
       label: "Frontend",
       imageUrl: "/arrow-right-up-fill.png",
       hoverColor: "blue-400",
-      url: "https://roadmap.sh/frontend",
+      url: "src\app\Roadmap\image.html",
     },
     {
       label: "Backend",

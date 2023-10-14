@@ -1,6 +1,7 @@
 
 import React from 'react';
 import Image from "next/image";
+import { Document, Page } from 'react-pdf';
 
 const RoadmapPopup = ({ isOpen, onClose, url }) => {
   if (!isOpen) {
@@ -22,6 +23,9 @@ const RoadmapPopup = ({ isOpen, onClose, url }) => {
             className="rounded-full"
           />
         </button>
+        <Document file={url}>
+          <Page pageNumber={1} width={600} />
+        </Document>
         <iframe
           src={url} 
           width="100%" 

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Image from 'next/image';
 import Editor from './editor';
+import ResumeD from "./ResumeD";
 
 const sections = {
   basicInfo: "Basic Info",
@@ -79,10 +80,21 @@ const Resume = () => {
         </div>
       </div>
       <div>
+      
       <Editor sections={sections} 
       information={resumeInformation}
       setInformation={setResumeInformation}
       />
+
+<div className="flex items-center justify-center mt-6">
+        <button className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
+          Download
+        </button>
+      </div>
+   <ResumeD information ={resumeInformation}
+   sections={sections}  />
+
+   
 
       </div>
     </div>
