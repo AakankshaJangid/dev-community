@@ -16,12 +16,12 @@ export default function Home() {
       {/* <FQASection /> */}
       {/* <VideoTutorials /> */}
       {/* <HomePage /> */}
-      {/* <Register /> */}
+      <Register />
       {/* <Blogs /> */}
       {/* <Roadmap /> */}
       {/* <Login /> */}
       {/* <Dashboard /> */}
-      <ProfilePage />
+      {/* <ProfilePage /> */}
       {/* <Resume /> */}
       
     </main>

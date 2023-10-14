@@ -20,6 +20,7 @@ const Notes = () => {
       console.error(error);
     }
   };
+  
 
   const handleChange = (e) => {
     setState({ ...state, [e.target.name]: e.target.value });
@@ -105,26 +106,15 @@ const Notes = () => {
         <div>
           {/* notes container */}
           {notes.length > 0 ? (
-            notes.map((note, i) => {
-              return (
-                <div
-                  key={i}
-                  className="bg-black bg-opacity-50 p-2 flex flex-col gap-4"
-                >
-                  {/* note */}
-                  <div className="flex justify-between">
-                    <h3 className="">{note.title}</h3>
-                    <button
-                      onClick={() => handleDelete(note.id)}
-                      className="bg-red-500 p-2 text-xs rounded-md"
-                    >
-                      Delete
-                    </button>
-                  </div>
-                  <p className="text-xs">{note.note}</p>
+            notes.map((note) => (
+              <div key={note._id} className="bg-black bg-opacity-40 p-4">
+                <h3 className="">{note.title}</h3>
+                <p className="text-base">{note.note}</p>
+                <div className="flex justify-end">
+                <button onClick={() => handleDelete(note._id)} className="bg-red-500 text-white p-2 text-xs">Delete</button>
                 </div>
-              );
-            })
+              </div>
+            ))
           ) : (
             <p>No Notes Available</p>
           )}
