@@ -1,8 +1,42 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styles from './ResumeD.module.css'
 import { AtSign, Calendar, GitHub, Linkedin, MapPin, Paperclip, Phone } from 'react-feather'
+import html2pdf from 'html2pdf.js'; 
 
 const ResumeD = forwardRef((props, ref) => {
+
+  const downloadPDF = () => {
+    const resumeContainer = document.querySelector("#resume-container");
+
+    const pdfOptions = {
+      margin: 10,
+      filename: 'resume.pdf',
+      image: { type: 'jpeg', quality: 0.98 },
+      html2canvas: { scale: 2 },
+      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+    };
+
+    html2pdf().from(resumeContainer).set(pdfOptions).outputPdf(pdf => {
+      const pdfBlob = new Blob([pdf], { type: 'application/pdf' });
+      const url = URL.createObjectURL(pdfBlob);
+
+      // Create an anchor for the download link
+      const a = document.createElement('a');
+      a.style.display = 'none';
+      a.href = url;
+      a.download = 'resume.pdf';
+
+      // Append the anchor to the document and click it to trigger the download
+      document.body.appendChild(a);
+      a.click();
+
+      // Remove the anchor from the document
+      document.body.removeChild(a);
+
+      // Revoke the URL to free up resources
+      URL.revokeObjectURL(url);
+    });
+  };
   const information = props.information;
   const sections = props.sections;
   const containerRef = useRef();
@@ -16,7 +50,7 @@ const ResumeD = forwardRef((props, ref) => {
     achievement: information[sections.achievement],
     education: information[sections.education],
     basicInfo: information[sections.basicInfo],
-    summary: information[sections.summary],
+    skills: information[sections.skills],
     other: information[sections.other],
   };
 
@@ -94,7 +128,7 @@ const ResumeD = forwardRef((props, ref) => {
       <div
         key={"project"}
         draggable
-        onDragOver={() => seTarget(info.project?.id)}
+        onDragOver={() => setTarget(info.project?.id)}
         onDragEnd={() => setSource(info.project?.id)}
         className={`${styles.section} ${
           info.project?.sectionTitle ? "" : styles.hidden
@@ -150,7 +184,7 @@ const ResumeD = forwardRef((props, ref) => {
       <div
         key={"education"}
         draggable
-        onDragOver={() => seTarget(info.education?.id)}
+        onDragOver={() => setTarget(info.education?.id)}
         onDragEnd={() => setSource(info.education?.id)}
         className={`${styles.section} ${
           info.education?.sectionTitle ? "" : styles.hidden
@@ -189,7 +223,7 @@ const ResumeD = forwardRef((props, ref) => {
       <div
         key={"achievement"}
         draggable
-        onDragOver={() => seTarget(info.achievement?.id)}
+        onDragOver={() => setTarget(info.achievement?.id)}
         onDragEnd={() => setSource(info.achievement?.id)}
         className={`${styles.section} ${
           info.achievement?.sectionTitle ? "" : styles.hidden
@@ -213,19 +247,29 @@ const ResumeD = forwardRef((props, ref) => {
         </div>
       </div>
     ),
-    [sections.summary]: (
+    [sections.skills]: (
       <div
-        key={"summary"}
+        key={"skills"}
         draggable
-        onDragOver={() => seTarget(info.summary?.id)}
-        onDragEnd={() => setSource(info.summary?.id)}
+        onDragOver={() => setTarget(info.skills?.id)}
+        onDragEnd={() => setSource(info.skills?.id)}
         className={`${styles.section} ${
-          info.summary?.sectionTitle ? "" : styles.hidden
+          info.skills?.sectionTitle ? "" : styles.hidden
         }`}
       >
-        <div className={styles.sectionTitle}>{info.summary?.sectionTitle}</div>
+        <div className={styles.sectionTitle}>{info.skills?.sectionTitle}</div>
         <div className={styles.content}>
-          <p className={styles.overview}>{info.summary?.detail}</p>
+          {info.skills?.points?.length > 0 ? (
+            <ul className={styles.points}>
+              {info.skills?.points?.map((elem, index) => (
+                <li className={styles.point} key={elem + index}>
+                  {elem}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <span />
+          )}
         </div>
       </div>
     ),
@@ -233,7 +277,7 @@ const ResumeD = forwardRef((props, ref) => {
       <div
         key={"other"}
         draggable
-        onDragOver={() => seTarget(info.other?.id)}
+        onDragOver={() => setTarget(info.other?.id)}
         onDragEnd={() => setSource(info.other?.id)}
         className={`${styles.section} ${
           info.other?.sectionTitle ? "" : styles.hidden
@@ -279,7 +323,7 @@ const ResumeD = forwardRef((props, ref) => {
 
   useEffect(() => {
     setColumns([
-      [sections.project, sections.education, sections.summary],
+      [sections.project, sections.education, sections.skills],
       [sections.workExp, sections.achievement, sections.other],
     ]);
   }, []);
@@ -330,6 +374,9 @@ const ResumeD = forwardRef((props, ref) => {
             ) : (
               <span />
             )}
+            <button  onClick={downloadPDF} className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
+          Download
+        </button>
         </div>
       </div>
       <div className={styles.main}>

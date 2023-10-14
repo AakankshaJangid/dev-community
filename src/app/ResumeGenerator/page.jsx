@@ -9,12 +9,11 @@ const sections = {
   project: "Projects",
   education: "Education",
   achievement: "Achievements",
-  summary: "Summary",
+  skills: "skills",
   other: "Other",
 };
 
 const Resume = () => {
-  // Move the useState call inside the Resume component
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
       id: sections.basicInfo,
@@ -41,9 +40,9 @@ const Resume = () => {
       sectionTitle: sections.achievement,
       points: [],
     },
-    [sections.summary]: {
-      id: sections.summary,
-      sectionTitle: sections.summary,
+    [sections.skills]: {
+      id: sections.skills,
+      sectionTitle: sections.skills,
       detail: "",
     },
     [sections.other]: {
@@ -87,9 +86,9 @@ const Resume = () => {
       />
 
 <div className="flex items-center justify-center mt-6">
-        <button className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
+        {/* <button  onClick={downloadResume} className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
           Download
-        </button>
+        </button> */}
       </div>
    <ResumeD information ={resumeInformation}
    sections={sections}  />

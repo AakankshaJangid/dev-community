@@ -3,7 +3,7 @@ import FQASection from './FQASection/page'
 import Roadmap from './Roadmap/page';
 import VideoTutorials from './video-tutorials/page';
 import ResumeGenerator from './ResumeGenerator/page';
-import PdfViewer from './Pdf/pdf';
+
 
 export default function Home() {
   return (
@@ -11,7 +11,6 @@ export default function Home() {
       {/* <FQASection /> */}
       {/* <VideoTutorials /> */}
       {/* <Roadmap /> */}
-      {/* <PdfViewer /> */}
       <ResumeGenerator />
     </main>
   )
