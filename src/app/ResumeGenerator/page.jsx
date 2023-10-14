@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from 'next/image';
 import Editor from './editor';
 import ResumeD from "./ResumeD";
+import ReactToPrint from "react-to-print";
+
 
 const sections = {
   basicInfo: "Basic Info",
@@ -14,6 +16,8 @@ const sections = {
 };
 
 const Resume = () => {
+
+  const resumeRef = useRef()
   const [resumeInformation, setResumeInformation] = useState({
     [sections.basicInfo]: {
       id: sections.basicInfo,
@@ -77,6 +81,16 @@ const Resume = () => {
             className="rounded-lg p-4 align-middle"
           />
         </div>
+           {/* <ReactToPrint
+          trigger={() => {
+            return (
+              <button>
+                Download <ArrowDown />
+              </button>
+            );
+          }}
+          content={() => resumeRef.current}
+        /> */}
       </div>
       <div>
       
@@ -86,15 +100,27 @@ const Resume = () => {
       />
 
 <div className="flex items-center justify-center mt-6">
+
+<ReactToPrint
+          trigger={() => {
+            return (
+              <button className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
+                Download 
+              </button>
+            );
+          }}
+          content={() => resumeRef.current}
+        />
+
+
         {/* <button  onClick={downloadResume} className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
           Download
         </button> */}
       </div>
-   <ResumeD information ={resumeInformation}
+   <ResumeD 
+   ref={resumeRef}
+   information ={resumeInformation}
    sections={sections}  />
-
-   
-
       </div>
     </div>
   );

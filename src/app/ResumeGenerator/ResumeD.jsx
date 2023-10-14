@@ -1,42 +1,11 @@
 import React, { forwardRef, useEffect, useRef, useState } from "react";
 import styles from './ResumeD.module.css'
 import { AtSign, Calendar, GitHub, Linkedin, MapPin, Paperclip, Phone } from 'react-feather'
-import html2pdf from 'html2pdf.js'; 
+ 
 
 const ResumeD = forwardRef((props, ref) => {
 
-  const downloadPDF = () => {
-    const resumeContainer = document.querySelector("#resume-container");
 
-    const pdfOptions = {
-      margin: 10,
-      filename: 'resume.pdf',
-      image: { type: 'jpeg', quality: 0.98 },
-      html2canvas: { scale: 2 },
-      jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
-    };
-
-    html2pdf().from(resumeContainer).set(pdfOptions).outputPdf(pdf => {
-      const pdfBlob = new Blob([pdf], { type: 'application/pdf' });
-      const url = URL.createObjectURL(pdfBlob);
-
-      // Create an anchor for the download link
-      const a = document.createElement('a');
-      a.style.display = 'none';
-      a.href = url;
-      a.download = 'resume.pdf';
-
-      // Append the anchor to the document and click it to trigger the download
-      document.body.appendChild(a);
-      a.click();
-
-      // Remove the anchor from the document
-      document.body.removeChild(a);
-
-      // Revoke the URL to free up resources
-      URL.revokeObjectURL(url);
-    });
-  };
   const information = props.information;
   const sections = props.sections;
   const containerRef = useRef();
@@ -341,6 +310,7 @@ const ResumeD = forwardRef((props, ref) => {
 
 
   return (
+    <div ref={ref}>
     <div className={styles.container}>
       <div className={styles.header}>
       <p className={styles.heading}>{info.basicInfo?.detail?.name}</p>
@@ -374,9 +344,6 @@ const ResumeD = forwardRef((props, ref) => {
             ) : (
               <span />
             )}
-            <button  onClick={downloadPDF} className="px-3 py-1 mb-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700">
-          Download
-        </button>
         </div>
       </div>
       <div className={styles.main}>
@@ -386,7 +353,7 @@ const ResumeD = forwardRef((props, ref) => {
           <div className={styles.col2}>
             {column[1].map((item) => sectionDiv[item])}
           </div>
-
+</div>
       </div>
     </div>
   );
