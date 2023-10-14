@@ -1,10 +1,38 @@
 // components/UserProfile.js
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import ToDo from "./to-do/page";
 import Image from "next/image";
+import ResumeFormPopup from "./ResumeFormPopup";
 
 const UserProfile = ({ user }) => {
+  const [showForm, setShowForm] = useState(false);
+  const [generatedResume, setGeneratedResume] = useState(null);
+  const [showDownloadLink, setShowDownloadLink] = useState(false);
+
+  const handleGenerateResume = async (formData) => {
+    try {
+      const response = await fetch('http://localhost:5000/api/resume/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        const blob = await response.blob();
+        setGeneratedResume(blob);
+        setShowForm(false);
+        setShowDownloadLink(true);
+      } else {
+        console.error('Resume generation failed');
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="user-profile flex flex-col items-center gap-6">
       <div className="user-avatar w-32 h-32">
@@ -69,9 +97,32 @@ const UserProfile = ({ user }) => {
         </div>
         <div className="flex flex-col justify-between gap-6">
           <ToDo />
-          <button className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-xs text-[#F96D00] rounded-sm">
-          Generate Resume
-        </button>
+          <button
+            onClick={() => setShowForm(true)}
+            className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-xs text-[#F96D00] rounded-sm"
+          >
+            Generate Resume
+          </button>
+          {showForm && (
+            <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center z-50">
+              <div className="bg-black p-4 rounded-lg shadow-md z-50">
+                <ResumeFormPopup onGenerateResume={handleGenerateResume} onClose={() => setShowForm(false)} />
+              </div>
+            </div>
+          )}
+          {showDownloadLink && generatedResume && (
+            <div className="flex justify-center">
+              <a
+                href={URL.createObjectURL(generatedResume)}
+                target="_blank"
+                rel="noopener noreferrer"
+                download="generated-resume.pdf"
+                className="py-2 px-4 bg-green-500 hover:bg-green-600 text-white font-semibold text-xs rounded-sm"
+              >
+                Download Generated Resume
+              </a>
+            </div>
+          )}
           <div className="bg-[#222831] p-4 flex justify-between gap-2 rounded-md shadow-md">
             <h1>Notes</h1>
             <Link href="/user-profile/notes">
