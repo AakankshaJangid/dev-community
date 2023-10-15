@@ -26,7 +26,7 @@ const Progressbar = () => {
   };
 
   return (
-    <div className="">
+    <div className="flex flex-col gap-2 p-2">
       <div className="">
         <div
           style={{
@@ -35,18 +35,19 @@ const Progressbar = () => {
             transition: "width 0.8s ease-in-out",
             // Add a transition to the width property
           }}
-          className=""
+          className="rounded-full p-2 border-2 border-gray-400 text-xs"
         >
-          progress
+          {progress}%
         </div>
       </div>
-      <div>{progress}%</div>
-      <button onClick={handleButtonClick} className="">
+      <div className="flex justify-between">
+      <button onClick={handleButtonClick} className="text-xs p-2 bg-white text-[#F96D00] rounded-sm">
         Progress
       </button>
-      <button onClick={handleButtonReset} className="">
+      <button onClick={handleButtonReset} className="text-xs text-[#F96D00] underline">
         Reset
       </button>
+      </div>
     </div>
   );
 };

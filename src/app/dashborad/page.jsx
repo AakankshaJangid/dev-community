@@ -3,7 +3,7 @@ import React from "react";
 import Image from "next/image";
 import Link from "next/link";
 import ToDo from "../user-profile/to-do/page";
-import Progressbar from "./progress-bar/page";
+import Progressbar from "../video-tutorials/progress-bar/page";
 
 const Dashboard = () => {
   return (

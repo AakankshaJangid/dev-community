@@ -69,7 +69,7 @@ const FAQs = () => {
   return (
     <div className="bg-[#393E46]">
       <div className="flex flex-col gap-10">
-        <div className="flex justify-center gap-6 items-center bg-[#F96D00]  bg-opacity-40 p-4 rounded-xl">
+        <div className="flex justify-center gap-6 items-center bg-black  bg-opacity-20 p-4 rounded-xl">
           <Image
             src="/dev-comm-logo.png"
             width={200}
@@ -79,7 +79,7 @@ const FAQs = () => {
           />
           <div className="flex flex-col gap-2">
             <h1 className="text-4xl text-[#F2F2F2] font-semibold">
-              Hello, <span className="text-[#222831]">Tech Crafters</span>
+              Hello, <span className="text-transparent bg-clip-text bg-gradient-to-b from-orange-300 to-orange-700">Tech Crafters</span>
             </h1>
             <p className="text-base text-[#F2F2F2] opacity-90">
               Establishing a comprehensive hub that equips developers with
