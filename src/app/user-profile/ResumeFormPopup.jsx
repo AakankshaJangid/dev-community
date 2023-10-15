@@ -1,46 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
+import Resume from "./resume-generator/page";
 
-const ResumeFormPopup = ({ onGenerateResume, onClose }) => {
-  const [formData, setFormData] = useState({
-    name: '',
-    title: '',
-    email: '',
-    // Add more fields as needed
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
-
-  const handleGenerate = () => {
-    onGenerateResume(formData);
-  };
-
+const ResumeFormPopup = ({ onClose }) => {
   return (
-    <div className="resume-form-popup">
-      <div className="resume-form-content">
-        <h2>Resume Form</h2>
-        <form>
-          <div>
-            <label htmlFor="name">Name</label>
-            <input type="text" name="name" value={formData.name} onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="title">Title/Domain</label>
-            <input type="text" name="title" value={formData.title} onChange={handleChange} />
-          </div>
-          <div>
-            <label htmlFor="email">Email</label>
-            <input type="email" name="email" value={formData.email} onChange={handleChange} />
-          </div>
-          {/* Add more fields as needed */}
-        </form>
-        <button onClick={handleGenerate}>Generate Resume</button>
-        <button onClick={onClose}>Close</button>
+    <div className="w-4/5 overflow-y-auto h-screen bg-[#1b1f25] bg-opacity-90 p-8">
+      <Resume />
+      <div className="flex justify-end">
+        <button
+          onClick={() => {
+            onClose(false);
+          }}
+          className="text-white bg-red-500 px-4 py-2 rounded-sm"
+        >
+          close
+        </button>
       </div>
     </div>
   );

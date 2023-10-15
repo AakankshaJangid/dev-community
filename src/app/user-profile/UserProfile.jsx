@@ -12,13 +12,16 @@ const UserProfile = ({ user }) => {
 
   const handleGenerateResume = async (formData) => {
     try {
-      const response = await fetch('http://localhost:5000/api/resume/generate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://localhost:5000/api/resume/generate",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       if (response.ok) {
         const blob = await response.blob();
@@ -26,7 +29,7 @@ const UserProfile = ({ user }) => {
         setShowForm(false);
         setShowDownloadLink(true);
       } else {
-        console.error('Resume generation failed');
+        console.error("Resume generation failed");
       }
     } catch (error) {
       console.error(error);
@@ -83,17 +86,6 @@ const UserProfile = ({ user }) => {
             <span className="text-gray-400">Courses/Certificates:</span>{" "}
             {user.courses.join(", ")}
           </p>
-
-          <div className="flex justify-end">
-            <a
-              href={user.resumeLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-xs text-[#F96D00] rounded-sm"
-            >
-              Download Resume
-            </a>
-          </div>
         </div>
         <div className="flex flex-col justify-between gap-6">
           <ToDo />
@@ -104,10 +96,11 @@ const UserProfile = ({ user }) => {
             Generate Resume
           </button>
           {showForm && (
-            <div className="fixed top-0 left-0 w-screen h-screen flex justify-center items-center z-50">
-              <div className="bg-black p-4 rounded-lg shadow-md z-50">
-                <ResumeFormPopup onGenerateResume={handleGenerateResume} onClose={() => setShowForm(false)} />
-              </div>
+            <div className="fixed top-0 left-0 w-full h-[100vh] flex justify-center items-center z-50">
+              <ResumeFormPopup
+                onGenerateResume={handleGenerateResume}
+                onClose={() => setShowForm(false)}
+              />
             </div>
           )}
           {showDownloadLink && generatedResume && (

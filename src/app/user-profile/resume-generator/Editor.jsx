@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import InputControl from "./InputControl";
 import styles from "./Editor.module.css";
-import jsPDF from "jspdf"; // Import jsPDF for PDF generation
-import { X } from "react-feather"; // Import the 'X' icon for deleting details
 
 const Editor = (props) => {
   const sections = props.sections;
@@ -307,6 +305,51 @@ const Editor = (props) => {
       </div>
     </div>
   );
+  // ... Other state variables
+
+  const skillsBody = (
+    <div className={styles.detail}>
+      <div className={styles.column}>
+        <label>Enter your skills</label>
+
+        <InputControl
+          placeholder="Line 1"
+          value={values.points ? values.points[0] : ""}
+          onChange={(event) => handlePointUpdate(event.target.value, 0)}
+        />
+        <InputControl
+          placeholder="Line 2"
+          value={values.points ? values.points[1] : ""}
+          onChange={(event) => handlePointUpdate(event.target.value, 1)}
+        />
+        <InputControl
+          placeholder="Line 3"
+          value={values.points ? values.points[2] : ""}
+          onChange={(event) => handlePointUpdate(event.target.value, 2)}
+        />
+        <InputControl
+          placeholder="Line 4"
+          value={values.points ? values.points[3] : ""}
+          onChange={(event) => handlePointUpdate(event.target.value, 3)}
+        />
+      </div>
+    </div>
+  );
+
+  const otherBody = (
+    <div className={styles.detail}>
+      <div className={styles.column}>
+        <label>Enter other details</label>
+        <InputControl
+          placeholder="Other Details"
+          value={values.other || ""}
+          onChange={(event) =>
+            setValues((prev) => ({ ...prev, other: event.target.value }))
+          }
+        />
+      </div>
+    </div>
+  );
 
   const generateBody = () => {
     switch (sections[activeSectionKey]) {
@@ -320,6 +363,10 @@ const Editor = (props) => {
         return educationBody;
       case sections.achievement:
         return achievementsBody;
+      case sections.skills:
+        return skillsBody;
+      case sections.other:
+        return otherBody;
       default:
         return null;
     }
@@ -424,6 +471,30 @@ const Editor = (props) => {
         }));
         break;
       }
+      case sections.skills: {
+        const tempPoints = values.points;
+        props.setInformation((prev) => ({
+          ...prev,
+          [sections.skills]: {
+            ...prev[sections.skills],
+            points: tempPoints,
+            sectionTitle,
+          },
+        }));
+        break;
+      }
+      case sections.other: {
+        const tempOther = values.other;
+        props.setInformation((prev) => ({
+          ...prev,
+          [sections.other]: {
+            ...prev[sections.other],
+            other: tempOther,
+            sectionTitle,
+          },
+        }));
+        break;
+      }
     }
   };
 
@@ -471,27 +542,14 @@ const Editor = (props) => {
     });
   }, [activeSectionKey]);
 
-  // Function to generate and download a PDF
-  const generatePDF = () => {
-    const doc = new jsPDF();
-
-    // Customize your PDF layout and content here
-    doc.setFontSize(16);
-    doc.text("My Resume", 10, 10);
-    // Add resume data to the PDF, e.g., using doc.text or doc.textWithLink
-
-    // Save the PDF
-    doc.save("my-resume.pdf");
-  };
-
   return (
-    <div className="min-h-[450px] max-w-[850px] flex-col gap-8 mt-16 shadow-lg shadow-black rounded-md p-5 pt-5 h-[fit-content] mx-auto bg-slate-700 ">
+    <div className="flex-col gap-8 shadow-lg shadow-black rounded-md p-5 pt-5 h-[fit-content] mx-auto bg-[#393E46] ">
       <div className="flex gap-2.5 overflow-x-auto mx-auto ">
         {Object.keys(sections)?.map((key) => (
           <div
             className={`p-2 border-b-2 border-slate-600 font-medium text-base whitespace-nowrap cursor-pointer ${
               activeSectionKey === key
-                ? "text-blue-500 border-b-blue-500"
+                ? "text-[#F96D00] border-b-[#F96D00]"
                 : "text-white"
             }`}
             key={key}
@@ -543,18 +601,12 @@ const Editor = (props) => {
           </div>
           {generateBody()}
           <button
-            className=" transform active:translate-y-2 px-3 py-1 mt-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700"
+            className=" transform active:translate-y-2 px-3 py-1 mt-6 rounded-lg bg-[#393E46] text-white outline-none font-medium text-base items-center cursor-pointer transition duration-200 hover:bg-[#F96D00]"
             onClick={handleSubmission}
           >
             Save
           </button>
         </div>
-        <button
-          className="transform active:translate-y-2 px-3 py-1 mt-6 rounded-lg bg-slate-700 text-white outline-none font-medium text-base space-x-1 items-center cursor-pointer transition duration-200 hover:bg-indigo-700"
-          onClick={generatePDF}
-        >
-          Generate PDF
-        </button>
       </div>
     </div>
   );
