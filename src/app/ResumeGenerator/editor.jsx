@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import InputControl from './InputControl';
 import styles from "./Editor.module.css";
+import { X } from "react-feather";
 
 const Editor = (props) => {
   const sections = props.sections;
@@ -309,7 +310,7 @@ const Editor = (props) => {
     <div className={styles.detail}>
       <div className={styles.column}>
         <label>Enter your skills</label>
-        
+
         <InputControl
           placeholder="Line 1"
           value={values.points ? values.points[0] : ""}
@@ -330,7 +331,7 @@ const Editor = (props) => {
           value={values.points ? values.points[3] : ""}
           onChange={(event) => handlePointUpdate(event.target.value, 3)}
         />
-          
+
       </div>
     </div>
   );
@@ -363,8 +364,8 @@ const Editor = (props) => {
         return educationBody;
       case sections.achievement:
         return achievementsBody;
-        case sections.skills:
-          return skillsBody;        
+      case sections.skills:
+        return skillsBody;
       case sections.other:
         return otherBody;
       default:
@@ -373,7 +374,7 @@ const Editor = (props) => {
   };
 
   const handleSubmission = () => {
-    switch  (sections[activeSectionKey]) {
+    switch (sections[activeSectionKey]) {
       case sections.basicInfo: {
         const tempDetail = {
           name: values.name,
@@ -498,6 +499,41 @@ const Editor = (props) => {
     }
   };
 
+  
+  const handleAddNew = () => {
+    const details = activeInformation?.details;
+    if (!details) return;
+    const lastDetail = details.slice(-1)[0];
+    if (!Object.keys(lastDetail).length) return;
+    details?.push({});
+
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
+    setActiveDetailIndex(details?.length - 1);
+  };
+
+  const handleDeleteDetail = (index) => {
+    const details = activeInformation?.details
+      ? [...activeInformation?.details]
+      : "";
+    if (!details) return;
+    details.splice(index, 1);
+    props.setInformation((prev) => ({
+      ...prev,
+      [sections[activeSectionKey]]: {
+        ...information[sections[activeSectionKey]],
+        details: details,
+      },
+    }));
+
+    setActiveDetailIndex((prev) => (prev === index ? 0 : prev - 1));
+  };
+
   useEffect(() => {
     const activeInfo = information[sections[activeSectionKey]];
     setActiveInformation(activeInfo);
@@ -541,8 +577,37 @@ const Editor = (props) => {
         : activeInfo?.detail?.github || "",
       phone: activeInfo?.detail?.phone || "",
       email: activeInfo?.detail?.email || "",
+      skills: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
+      other: typeof activeInfo?.detail !== "object" ? activeInfo.detail : "",
+
     });
   }, [activeSectionKey]);
+
+  useEffect(() => {
+    setActiveInformation(information[sections[activeSectionKey]]);
+  }, [information]);
+
+  useEffect(() => {
+    const details = activeInformation?.details;
+    if (!details) return;
+
+    const activeInfo = information[sections[activeSectionKey]];
+    setValues({
+      overview: activeInfo.details[activeDetailIndex]?.overview || "",
+      link: activeInfo.details[activeDetailIndex]?.link || "",
+      certificationLink:
+        activeInfo.details[activeDetailIndex]?.certificationLink || "",
+      companyName: activeInfo.details[activeDetailIndex]?.companyName || "",
+      location: activeInfo.details[activeDetailIndex]?.location || "",
+      startDate: activeInfo.details[activeDetailIndex]?.startDate || "",
+      endDate: activeInfo.details[activeDetailIndex]?.endDate || "",
+      points: activeInfo.details[activeDetailIndex]?.points || "",
+      title: activeInfo.details[activeDetailIndex]?.title || "",
+      linkedin: activeInfo.details[activeDetailIndex]?.linkedin || "",
+      github: activeInfo.details[activeDetailIndex]?.github || "",
+      college: activeInfo.details[activeDetailIndex]?.college || "",
+    });
+  }, [activeDetailIndex]);
 
   return (
     <div className='min-h-[450px] max-w-[850px] flex-col gap-8 mt-16 shadow-lg shadow-black rounded-md p-5 pt-5 h-[fit-content] mx-auto bg-slate-700 '>
@@ -565,7 +630,7 @@ const Editor = (props) => {
             onChange={(event) => setSectionTitle(event.target.value)}
           />
 
-          <div className="flex flex-wrap items-center gap-20">
+          <div className={styles.chips}>
             {activeInformation?.details
               ? activeInformation?.details?.map((item, index) => (
                 <div
