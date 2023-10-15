@@ -14,7 +14,7 @@ const RoadmapPopup = ({ isOpen, onClose, url }) => {
       <div className="bg-white p-4 rounded-lg shadow-lg w-1/2 ">
         <button className="absolute top-2 right-4 py-2 px-2 bg-orange-700 text-white rounded-lg" onClick={onClose}>
         <Image
-            src="/close-line.png"
+            src="/close-circle-line.png"
             width={20}
             height={20}
             alt="logo-img"

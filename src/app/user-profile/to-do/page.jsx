@@ -82,7 +82,7 @@ const ToDo = () => {
         <button className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-xs text-[#F96D00] rounded-sm">Add Task</button>
       </form>
       <div>
-        <ul>{renderTask}</ul>
+        <ul className="flex flex-col gap-2">{renderTask}</ul>
       </div>
     </div>
   );

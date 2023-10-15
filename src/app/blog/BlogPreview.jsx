@@ -26,13 +26,13 @@ const BlogPreview = ({
     }
   };
   return (
-    <div className="bg-white rounded-lg shadow-md p-4 overflow-y-auto">
+    <div className="bg-white rounded-lg shadow-md p-4 overflow-y-auto flex gap-6">
       {images && images.length > 0 ? (
         <>
           <img
             src={images[currentImageIndex]}
             alt="Blog Post"
-            className="h-full rounded-md w-full"
+            className="h-1/2 rounded-md w-1/2"
           />
           {images.length > 1 && (
             <div className="absolute top-0 right-0 left-0 flex justify-between p-2">
@@ -54,11 +54,13 @@ const BlogPreview = ({
       ) : (
         <p>No images available</p>
       )}
+      <div className="flex flex-col">
       <h2 className="text-xl font-semibold mt-2 text-[#F96D00]">{title}</h2>
       <p className="text-base mt-2 text-black">{description}</p>
       <p className="text-gray-600 text-sm">
         Created by {createdBy} on {createdTime}
       </p>
+      </div>
     </div>
   );
 };
