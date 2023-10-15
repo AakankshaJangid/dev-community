@@ -42,7 +42,7 @@ const Sidebar = () => {
         {isSidebarOpen ? (
           <ul className="flex flex-col gap-6">
             <li className="">
-              <Link href="/">
+              <Link href="/home">
                 <span className="hover:text-[#F96D00] cursor-pointer">Home</span>
               </Link>
             </li>
@@ -76,7 +76,7 @@ const Sidebar = () => {
         ) : (
           <ul className="flex flex-col gap-6 mt-2">
             <li className="">
-              <Link href="/">
+              <Link href="/home">
                 <Image
                   src="/home-8-line.png"
                   width={30}

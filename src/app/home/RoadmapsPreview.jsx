@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const RoadmapsPreview = () => {
@@ -12,7 +13,12 @@ const RoadmapsPreview = () => {
           obcaecati? Doloremque excepturi aut, aliquid temporibus asperiores
           veniam repudiandae deserunt fugiat vero?
         </p>
-        <button className="bg-[#F96D00] rounded-md text-white p-2 w-2/6">Go to roadmaps...</button>
+        <Link href={"/roadmap"}>
+          {" "}
+          <span className="bg-[#F96D00] rounded-md text-white p-2 w-2/6">
+            Go to roadmaps...
+          </span>
+        </Link>
       </div>
       <div>
         <Image

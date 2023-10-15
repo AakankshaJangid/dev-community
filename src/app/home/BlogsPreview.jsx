@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import React from 'react'
 
 const BlogsPreview = ({blogData}) => {
@@ -6,7 +7,7 @@ const BlogsPreview = ({blogData}) => {
       <div className='flex flex-col gap-8 py-6 px-8 border border-gray-500 rounded-lg shadow-sm shadow-white'>
         <div className='flex justify-between items-center'>
             <h1>Blogs</h1>
-            <p>View All</p>
+            <Link href={'/blog'}><p className='text-[#F96D00] underline'>View All</p></Link>
         </div>
         <div>
         <table className="w-full table-auto">

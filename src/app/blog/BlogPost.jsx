@@ -54,13 +54,13 @@ const BlogPost = ({ images,title, description, createdBy, createdTime }) => {
               <div className="absolute top-0 right-0 left-0 flex justify-between p-2">
                 <button
                   onClick={previousImage}
-                  className="text-white hover:text-gray-300"
+                  className="text-white text-base bg-[#F96D00] bg-opacity-70 hover:text-gray-300 py-2 px-4 rounded-full"
                 >
                   &#8249;
                 </button>
                 <button
                   onClick={nextImage}
-                  className="text-white hover:text-gray-300"
+                  className="text-white text-base bg-[#F96D00] bg-opacity-70 hover:text-gray-300 py-2 px-4 rounded-full"
                 >
                   &#8250;
                 </button>
