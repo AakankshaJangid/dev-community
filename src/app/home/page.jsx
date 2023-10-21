@@ -8,7 +8,7 @@ import RoadmapsPreview from './RoadmapsPreview'
 
 const HomePage = () => {
   const [blogData,setBlogData] = useState([])
-  
+
   const fetchBlogPosts = async () => {
     try {
       const response = await fetch('http://localhost:5000/api/blogs/all');

@@ -1,73 +1,71 @@
-// Register.js (Frontend)
-"use client"
-import Image from "next/image";
+"use client";
+
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { signIn } from "next-auth/react";
 
-const Register = () => {
-  const [formData, setFormData] = useState({
-    username: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-  });
+export default function RegisterForm() {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const [users, setUsers] = useState([]);
-  // Function to fetch all users
-  const fetchUsers = async () => {
-    try {
-      const response = await fetch(
-        "http://localhost:5000/api/users/get-all-users"
-      );
-      if (response.ok) {
-        const data = await response.json();
-        setUsers(data);
-        console.log(data);
-      } else {
-        console.error("Failed to fetch users");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
-  };
+  const router = useRouter();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (!name || !email || !password) {
+      setError("All fields are necessary.");
+      return;
+    }
+
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
+      const resUserExists = await fetch("api/userExists", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({ email: email }), // Include the email property
       });
 
-      if (response.ok) {
-        // Registration successful
-        alert("User registered successfully");
-        // Redirect or perform any other actions
-        window.location.href = "/home";
+      const { user } = await resUserExists.json();
+
+      if (user) {
+        setError("User already exists.");
+        return;
+      }
+
+      const res = await fetch("api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name:name,
+          email:email,
+          password:password,
+        }),
+      });
+
+      if (res.ok) {
+        const form = e.target;
+        form.reset();
+        await signIn('credentials', {
+          email,
+          password,
+          callbackUrl: '/user-profile', // Redirect to the user's profile after registration
+        });
+        router.push("/home");
       } else {
-        alert("Registration failed");
+        console.log("User registration failed.");
       }
     } catch (error) {
-      console.error(error);
-      alert("An error occurred during registration");
+      console.log("Error during registration: ", error);
     }
   };
-
-  useEffect(() => {
-    fetchUsers(); // Fetch users when the component mounts
-  }, []);
 
   return (
     <div className="min-h-screen bg-[#393E46] w-full flex justify-center items-center">
@@ -86,67 +84,41 @@ const Register = () => {
           <h2 className="text-2xl font-bold">Register</h2>
           <p className="text-lg text-[#222831] ">Navigating Tech Together!</p>
           </div>
-          <form
-            onSubmit={handleSubmit}
-            className="text-gray-200 flex flex-col gap-6"
-          >
-            <div className="flex justify-between gap-10">
-              <label htmlFor="username">Username</label>
-              <input
-                type="text"
-                name="username"
-                id="username"
-                value={formData.username}
-                onChange={handleChange}
-                required
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+          <input
+            onChange={(e) => setName(e.target.value)}
+            type="text"
+            placeholder="Full Name"
+            className="outline-none bg-transparent border-b-2 border-white text-gray-300"
+          />
+          <input
+            onChange={(e) => setEmail(e.target.value)}
+            type="text"
+            placeholder="Email"
+            className="outline-none bg-transparent border-b-2 border-white text-gray-300"
+          />
+          <input
+            onChange={(e) => setPassword(e.target.value)}
+            type="password"
+            placeholder="Password"
+            className="outline-none bg-transparent border-b-2 border-white text-gray-300"
+          />
+          <button className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-lg text-[#F96D00] rounded-sm">
+            Register
+          </button>
+
+          {error && (
+            <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+              {error}
             </div>
-            <div className="flex justify-between gap-10">
-              <label htmlFor="email">Email</label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
-            </div>
-            <div className="flex justify-between gap-10">
-              <label htmlFor="password">Password</label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                required
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
-            </div>
-            <div className="flex justify-between gap-10">
-              <label htmlFor="confirmPassword">Confirm Password</label>
-              <input
-                type="password"
-                name="confirmPassword"
-                id="confirmPassword"
-                value={formData.confirmPassword}
-                onChange={handleChange}
-                required
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
-            </div>
-            <button type="submit" className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-lg text-[#F96D00] rounded-sm">
-              Register
-            </button>
-            <p>Already have an account? <Link href={'/login'}> <span className="text-[#222831] font-semibold">Log In</span></Link></p>
-          </form>
+          )}
+
+          <Link className="text-sm mt-3 text-right" href={"/login"}>
+            Already have an account? <span className="underline text-[#222831] font-semibold">Login</span>
+          </Link>
+        </form>
         </div>
       </div>
     </div>
   );
-};
-
-export default Register;
+}

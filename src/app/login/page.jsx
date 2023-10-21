@@ -1,35 +1,36 @@
-// components/Login.js
 "use client";
-import Image from "next/image";
+
 import Link from "next/link";
 import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import Image from "next/image";
 
-const Login = () => {
+export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-  const handleLogin = async () => {
+  const router = useRouter();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, password }),
+      const res = await signIn("credentials", {
+        email,
+        password,
+        redirect: false,
       });
 
-      if (response.status === 200) {
-        // Login successful
-        const data = await response.json();
-        // You can store the user information in state or cookies
-        window.location.href = "/home";
-      } else {
-        // Handle login error
-        const data = await response.json();
-        console.error(data.message);
+      if (res.error) {
+        setError("Invalid Credentials");
+        return;
       }
+
+      router.replace("/home");
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   };
 
@@ -50,34 +51,34 @@ const Login = () => {
             <h2 className="text-2xl font-bold">Login</h2>
             <p className="text-lg text-[#222831] ">Welcome Back!</p>
           </div>
-          <div className="flex flex-col gap-6">
-            <div className="flex justify-between items-center gap-20">
-              <label htmlFor="confirmPassword">Email</label>
-              <input
-                type="text"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
-            </div>
-            <div className="flex justify-between items-center gap-20">
-              <label htmlFor="confirmPassword">Password</label>
-              <input
-                type="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                className="outline-none bg-transparent border-b-2 border-white"
-              />
-            </div>
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+            <input
+              onChange={(e) => setEmail(e.target.value)}
+              type="text"
+              placeholder="Email"
+              className="outline-none bg-transparent border-b-2 border-white text-gray-300"
+            />
+            <input
+              onChange={(e) => setPassword(e.target.value)}
+              type="password"
+              placeholder="Password"
+              className="outline-none bg-transparent border-b-2 border-white text-gray-300"
+            />
+            <button className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-lg text-[#F96D00] rounded-sm">
+              Login
+            </button>
+            {error && (
+              <div className="bg-red-500 text-white w-fit text-sm py-1 px-3 rounded-md mt-2">
+                {error}
+              </div>
+            )}
 
-            <button onClick={handleLogin} className="py-2 px-4 bg-white hover:bg-slate-200 font-semibold text-lg text-[#F96D00] rounded-sm">Login</button>
-            <p>Don't have an account? <Link href={'/register'}> <span className="text-[#222831] font-semibold">Sign Up</span></Link></p>
-
-          </div>
+            <Link className="text-sm mt-3 text-right" href={"/register"}>
+              Don't have an account? <span className="underline text-[#222831] font-semibold">Register</span>
+            </Link>
+          </form>
         </div>
       </div>
     </div>
   );
-};
-
-export default Login;
+}

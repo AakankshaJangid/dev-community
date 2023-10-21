@@ -4,7 +4,6 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-const usersRouter = require('./routes/users');
 const videoTutorialsRouter = require('./routes/videoTutorial');
 const blogsRouter = require('./routes/blogs');
 const notesRouter = require('./routes/notes');
@@ -30,8 +29,6 @@ db.once('open', () => {
 });
 
 // Use the API endpoints
-app.use('/api/users', usersRouter);
-
 app.use('/api/tutorials', videoTutorialsRouter);
 
 app.use('/api/blogs', blogsRouter); 
