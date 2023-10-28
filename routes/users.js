@@ -57,5 +57,25 @@ router.post('/login', async (req, res) => {
   }
 });
 
+// userExists route
+router.post('/userExists', async (req, res) => {
+  try {
+    const { email } = req.body;
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      // User with the provided email already exists
+      return res.status(200).json({ user: existingUser });
+    }
+
+    // User with the provided email does not exist
+    return res.status(200).json({ user: null });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: 'Internal Server Error' });
+  }
+});
+
+
 
 module.exports = router;

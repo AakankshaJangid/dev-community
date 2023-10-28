@@ -37,6 +37,9 @@ app.use('/api/notes', notesRouter);
 
 app.use('/api/resume', resumeRouter); // Add the resume route
 
+app.use('/api/userExists', resumeRouter); // Add the resume route
+
+
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
